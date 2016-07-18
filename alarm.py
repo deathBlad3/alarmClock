@@ -1,6 +1,8 @@
 import argparse
 import datetime
 import time
+from random import randint
+import webbrowser
 
 parser = argparse.ArgumentParser()
 requiredNamed = parser.add_argument_group('required named arguments')
@@ -11,8 +13,14 @@ args = parser.parse_args()
 
 #Waits the specified amount of seconds and plays a random video on YouTube
 def playVideo(secondsNeeded):
+    print "Alarm Set"
+    time.sleep(secondsNeeded)
+    links = 'links.txt'
+    with open(links) as f:
+        linksList = f.read().splitlines()
+    id = randint(0,len(linksList)-1)
+    webbrowser.open(linksList[id])
     
-
 now = datetime.datetime.now()
 if args.ap=='PM':
     args.hour+=12
